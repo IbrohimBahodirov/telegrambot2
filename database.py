@@ -3,7 +3,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 # database.py ichida
-DB_PATH = "/app/data/quiz_scores.db"
+DB_PATH = "quiz_scores.db"
 
 
 def init_db():
