@@ -520,6 +520,18 @@ async def poll_answer_handler(update: Update, context: ContextTypes.DEFAULT_TYPE
         player["score"]   += earned
         player["correct"] += 1
 
+    # Agar barcha o'yinchilar javob bergan bo'lsa — 2 soniyada keyingi savolga o'tish
+    all_answered = all(p["answered_current"] for p in game["players"].values())
+    if all_answered:
+        _cancel_jobs(context, chat_id)
+        if context.job_queue is not None:
+            context.job_queue.run_once(
+                _next_question_job,
+                when=2,
+                data={"chat_id": chat_id, "q_idx": game["current"]},
+                name=f"nq_{chat_id}",
+            )
+
 
 async def finish_game(context: ContextTypes.DEFAULT_TYPE, chat_id: int):
     """Завершение игры и показ результатов"""
