@@ -2,7 +2,8 @@ import sqlite3
 import logging
 
 logger = logging.getLogger(__name__)
-DB_PATH = "quiz_scores.db"
+# database.py ichida
+DB_PATH = "/app/data/quiz_scores.db"
 
 
 def init_db():
