@@ -18,6 +18,7 @@ async def fetch_questions(category_id: int, amount: int) -> list[dict]:
         "category": category_id,
         "type":     "multiple",
         "encode":   "url3986",
+        "lang":     "ru",
     }
 
     try:
